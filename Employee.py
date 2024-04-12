@@ -30,9 +30,38 @@ class Employee():
     ----------
     """
     #Here you start your code.
+    def __init__(self, emp_id, name, position, salary):
+        if not isinstance(emp_id, int) or emp_id <= 0:
+            raise ValueError("Invalid employee ID")
+        if not isinstance(name, str):
+            raise ValueError("Invalid employee name")
+        if not isinstance(position, str):
+            raise ValueError("Invalid employee position")
+        if not isinstance(salary, (int, float)) or salary < 0:
+            raise ValueError("Invalid employee salary")
 
+        self._emp_id = emp_id
+        self._name = name
+        self._position = position
+        self._salary = salary
 
+    def get_emp_id(self):
+        return self._emp_id
 
+    def get_name(self):
+        return self._name
+
+    def get_position(self):
+        return self._position
+
+    def get_salary(self):
+        return self._salary
+
+    def set_position(self, position):
+        self._position = position
+
+    def set_salary(self, salary):
+        self._salary = salary
 
 
 def main():

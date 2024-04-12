@@ -1,4 +1,5 @@
-
+from Room import Room
+from Employee import Employee
 
 class Hotel:
     """
@@ -33,27 +34,43 @@ class Hotel:
         A dictionary mapping room numbers to guest names, representing current reservations.
     """
     #Here you start your code.
+    def __init__(self, name):
+        self.name = name
+        self.rooms = []
+        self.employees = []
+        self.reservations = {}
 
     def add_room(self, room):
-        pass  
+        self.rooms.append(room)
+
     def remove_room(self, room_number):
-        pass
+        self.rooms = [room for room in self.rooms if room.room_number != room_number]
+
     def add_employee(self, employee):
-        pass
-    def remove_employee(self, emp_id):
-        pass
+        self.employees.append(employee)
+
+    def remove_employee(self, employee_id):
+        self.employees = [emp for emp in self.employees if emp.employee_id != employee_id]
+
     def check_in(self, room_number, guest_name):
-        pass
+        for room in self.rooms:
+            if room.room_number == room_number:
+                if room.room_state == "Desocupada":
+                    room.room_state = "Ocupada"
+                    self.reservations[room_number] = guest_name
+                    return f"Check-in successful for {guest_name} in room {room_number}."
+                else:
+                    return "Room not available or already occupied."
+        return "Room not found."
+
     def check_out(self, room_number):
-        pass
-    def find_room(self, room_number):
-        pass
-     
-
-
-
-    
-
+        if room_number in self.reservations:
+            del self.reservations[room_number]
+            for room in self.rooms:
+                if room.room_number == room_number:
+                    room.room_state = "Desocupada"
+                    return f"Check-out successful for {self.reservations[room_number]} from room {room_number}."
+        return "Room not found or no guest checked-in."
 
 def main():
 # TESTING

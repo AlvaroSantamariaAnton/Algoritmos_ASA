@@ -1,4 +1,4 @@
-
+from Roomtype import HotelRoomType
 
 class Room():
     """Python class to implement a basic version of a hotel room.
@@ -31,21 +31,72 @@ class Room():
     """
 
     #Here you start your code.
-    def is_occupied():
-        pass
-    def check_in():
-        pass
-    def check_out():
-        pass
-    
+    def __init__(self, room_type, room_number, room_state, room_price):
+        if not isinstance(room_type, HotelRoomType):
+            raise ValueError("room_type debe ser un valor de la enumeración HotelRoomType")
+        self._room_type = room_type
 
+        if not isinstance(room_number, int) or room_number <= 0:
+            raise ValueError("room_number debe ser un entero positivo")
+        self._room_number = room_number
 
+        if room_state not in ["Ocupada", "Desocupada"]:
+            raise ValueError("room_state debe ser 'Ocupada' o 'Desocupada'")
+        self._room_state = room_state
 
+        if not isinstance(room_price, (int, float)) or room_price <= 0:
+            raise ValueError("room_price debe ser un número positivo")
+        self._room_price = room_price
 
+    def is_occupied(self):
+        return self._room_state == "Ocupada"
 
+    def check_in(self):
+        if self.is_occupied():
+            print("La habitación ya está ocupada.")
+        else:
+            self._room_state = "Ocupada"
+            print("Check-in exitoso. La habitación ahora está ocupada.")
 
+    def check_out(self):
+        if not self.is_occupied():
+            print("La habitación ya está desocupada.")
+        else:
+            self._room_state = "Desocupada"
+            print("Check-out exitoso. La habitación ahora está desocupada.")
 
+    # Getters y Setters
+    def get_room_type(self):
+        return self._room_type
 
+    def set_room_type(self, room_type):
+        if not isinstance(room_type, HotelRoomType):
+            raise ValueError("room_type debe ser un valor de la enumeración HotelRoomType")
+        self._room_type = room_type
+
+    def get_room_number(self):
+        return self._room_number
+
+    def set_room_number(self, room_number):
+        if not isinstance(room_number, int) or room_number <= 0:
+            raise ValueError("room_number debe ser un entero positivo")
+        self._room_number = room_number
+
+    def get_room_state(self):
+        return self._room_state
+
+    def set_room_state(self, room_state):
+        if room_state not in ["Ocupada", "Desocupada"]:
+            raise ValueError("room_state debe ser 'Ocupada' o 'Desocupada'")
+        self._room_state = room_state
+
+    def get_room_price(self):
+        return self._room_price
+
+    def set_room_price(self, room_price):
+        if not isinstance(room_price, (int, float)) or room_price <= 0:
+            raise ValueError("room_price debe ser un número positivo")
+        self._room_price = room_price
 
 def main():
     #TESTING

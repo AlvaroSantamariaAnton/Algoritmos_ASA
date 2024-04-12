@@ -1,6 +1,6 @@
+from enum import Enum
 
-
-class HotelRoomType():
+class HotelRoomType(Enum):
     """Python class to implement an enumeration for the attribute Hotel Room Type.
 
     This Python class implements an enumeration for the attribute Hotel Room Type.
@@ -22,36 +22,30 @@ class HotelRoomType():
     ----------
     """
     #Here you start your code.
-
-
-
-
-
-
-
-
+    Individual = 1
+    Doble = 2
+    Suite = 3
 
 def main():
-    #TESTING
-    print("=================================================================.")
+    # TESTING
+    print("=================================================================")
     print("Test Case 1: Check Class HotelRoomType.")
-    print("=================================================================.")
+    print("=================================================================")
 
-    if isinstance(HotelRoomType.INDIVIDUAL, HotelRoomType):
+    if isinstance(HotelRoomType.Individual, HotelRoomType):
         print("Test PASS. The enum for Individual has been correctly set.")
     else:
         print("Test FAIL. Check the method __init__().")
 
-    if isinstance(HotelRoomType.DOBLE, HotelRoomType):
+    if isinstance(HotelRoomType.Doble, HotelRoomType):
         print("Test PASS. The enum for Doble has been correctly set.")
     else:
         print("Test FAIL. Check the method __init__().")
 
-    if isinstance(HotelRoomType.SUITE, HotelRoomType):
+    if isinstance(HotelRoomType.Suite, HotelRoomType):
         print("Test PASS. The enum for Suite has been correctly set.")
     else:
         print("Test FAIL. Check the method __init__().")
-
 
 if __name__ == "__main__":
     main()
